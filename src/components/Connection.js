@@ -9,7 +9,7 @@ class Connection extends React.Component {
         goToDashboard: false,
         password: '',
         token: '',
-        username: '',
+        username: ''
     };
 
     handleChange = ( event ) => {
@@ -33,7 +33,6 @@ class Connection extends React.Component {
     };
 
     render() {
-
         if( this.state.goToDashboard ) {
             return <Redirect to = {
                 {
@@ -45,7 +44,8 @@ class Connection extends React.Component {
 
         return (
             <div>
-                <form onSubmit={ this.handleSubmit }>
+                <h1>Recipes Notepad</h1>
+                <form onSubmit={ this.handleSubmit } className="form">
                     <label>{this.state.errorMsg}</label>
                     <input
                         onChange = { this.handleChange }

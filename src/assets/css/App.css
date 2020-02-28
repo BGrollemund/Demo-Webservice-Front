@@ -1,0 +1,336 @@
+* {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url("../images/cork.jpg");
+    color: #111;
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+h1 {
+    background-color: #eee;
+    border: 2px solid #111;
+    border-radius: 3px;
+    font-size: 64px;
+    margin: 100px;
+    padding: 26px;
+    text-align: center;
+    width: 800px;
+}
+
+h2 {
+    font-size: 36px;
+    margin: 13px;
+}
+
+button {
+    background-color: #008000;
+    border-radius: 3px;
+    display: block;
+    font-size: 22px;
+    font-weight: 700;
+    padding: 13px;
+    margin: 48px 13px;
+    width: 200px;
+}
+
+    .button:hover {
+        background-color: #006400;
+        cursor: pointer;
+    }
+
+.form {
+    background-color: #eee;
+    border: 2px solid #111;
+    border-radius: 3px;
+    height: 400px;
+    margin: 200px;
+    padding: 75px;
+    width: 400px;
+}
+
+    .form.add-form {
+        height: 800px;
+        padding: 13px;
+        margin: 50px 200px;
+        width: 800px;
+    }
+
+        .form.add-form input {
+            width: 400px;
+        }
+
+        .form.add-form select {
+            width: 400px;
+        }
+
+        .form.add-form .add-form-cmd {
+            display: flex;
+        }
+
+            .form.add-form .add-form-cmd .go-to-list {
+                background-color: #87cefa;
+            }
+
+                .form.add-form .add-form-cmd .go-to-list:hover {
+                    background-color: #6495ed;
+                }
+
+            .form.add-form .add-form-cmd button:hover {
+                background-color: #006400;
+                cursor: pointer;
+            }
+
+    .form label {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .form input {
+        display: block;
+        font-size: 22px;
+        font-weight: 700;
+        margin: 13px;
+        padding: 13px;
+        width: 200px;
+    }
+
+    .form select {
+        display: block;
+        font-size: 22px;
+        font-weight: 700;
+        margin: 13px;
+        padding: 13px;
+        width: 200px;
+    }
+
+    .form textarea {
+        font-size: 22px;
+        font-weight: 700;
+        height: 200px;
+        margin: 13px;
+        padding: 13px;
+        width: 500px;
+    }
+
+.recipe-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 26px;
+}
+
+.recipe-box {
+    padding: 13px;
+}
+
+    .recipe-box:hover {
+        background-color: #d3d3d3;
+        cursor: pointer;
+    }
+
+    .recipe-box.add-recipe {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .recipe-box.add-recipe > div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .recipe-box.add-recipe > div > div {
+            font-size: 128px;
+            font-weight: 700;
+        }
+
+        .recipe-box.logout > div {
+            background-color: #cd5c5c;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+            .recipe-box.logout > div:hover {
+                background-color: #ff4500;
+            }
+
+            .recipe-box.logout > div > div {
+                font-size: 64px;
+                font-weight: 700;
+            }
+
+    .recipe-box > div {
+        background-color: #eee;
+        border: 2px solid #111;
+        border-radius: 3px;
+        height: 400px;
+        padding: 13px;
+        text-align: center;
+        width: 400px;
+    }
+
+        .recipe-box > div:hover {
+            background-color: lightslategrey;
+        }
+
+        .recipe-box > div > div {
+            font-size: 18px;
+            margin: 7px;
+        }
+
+        .recipe-box > div > div.additional-infos {
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 13px;
+        }
+
+        .recipe-box .stars_1 {
+            background: url("../images/1_stars.png") no-repeat center center;
+            height: 200px;
+            margin: 0 75px;
+            width: 200px;
+        }
+
+        .recipe-box .stars_2 {
+            background: url("../images/2_stars.png") no-repeat center center;
+            height: 200px;
+            margin: 0 75px;
+            width: 200px;
+        }
+
+        .recipe-box .stars_3 {
+            background: url("../images/3_stars.png") no-repeat center center;
+            height: 200px;
+            margin: 0 75px;
+            width: 200px;
+        }
+
+        .recipe-box .stars_4 {
+            background: url("../images/4_stars.png") no-repeat center center;
+            height: 200px;
+            margin: 0 75px;
+            width: 200px;
+        }
+
+        .recipe-box .stars_5 {
+            background: url("../images/5_stars.png") no-repeat center center;
+            height: 200px;
+            margin: 0 75px;
+            width: 200px;
+        }
+
+.recipe-details {
+    display: flex;
+    justify-content: space-around;
+    margin: 50px;
+}
+
+.recipe-infos-box {
+    background-color: #eee;
+    border: 2px solid #111;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 700;
+    height: 800px;
+    padding: 13px;
+    width: 300px;
+}
+
+.recipe-infos > div {
+    margin: 7px 0;
+}
+
+.recipe-infos .additional-infos {
+    font-size: 20px;
+    margin-top: 26px;
+}
+
+.recipe-ingredients-box {
+    background-color: #eee;
+    border: 2px solid #111;
+    border-radius: 3px;
+    height: 800px;
+    padding: 13px;
+    width: 400px;
+}
+
+.recipe-steps-box {
+    background-color: #eee;
+    border: 2px solid #111;
+    border-radius: 3px;
+    height: 800px;
+    padding: 13px;
+    width: 500px;
+}
+
+.recipe-cmd-box {
+    padding: 13px;
+    width: 300px;
+}
+
+    .recipe-cmd-box .back-to-list {
+        background-color: #87cefa;
+    }
+
+        .recipe-cmd-box .back-to-list:hover {
+            background-color: #6495ed;
+            cursor: pointer;
+        }
+
+    .recipe-cmd-box .recipe-modify {
+        background-color: #008000;
+    }
+
+        .recipe-cmd-box .recipe-modify:hover {
+            background-color: #006400;
+            cursor: pointer;
+        }
+
+    .recipe-cmd-box .recipe-delete {
+        background-color: #cd5c5c;
+    }
+
+        .recipe-cmd-box .recipe-delete:hover {
+            background-color: #ff4500;
+            cursor: pointer;
+        }
+
+
+
+.stars_1 {
+    background: url("../images/1_stars.png") no-repeat center center;
+    height: 200px;
+    width: 200px;
+}
+
+.stars_2 {
+    background: url("../images/2_stars.png") no-repeat center center;
+    height: 200px;
+    width: 200px;
+}
+
+.stars_3 {
+    background: url("../images/3_stars.png") no-repeat center center;
+    height: 200px;
+    width: 200px;
+}
+
+.stars_4 {
+    background: url("../images/4_stars.png") no-repeat center center;
+    height: 200px;
+    width: 200px;
+}
+
+.stars_5 {
+    background: url("../images/5_stars.png") no-repeat center center;
+    height: 200px;
+    width: 200px;
+}
