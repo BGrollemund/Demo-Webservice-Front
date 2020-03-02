@@ -227,10 +227,10 @@ button {
             width: 200px;
         }
 
-.recipe-details {
+.recipe-main-box {
     display: flex;
     justify-content: space-around;
-    margin: 50px;
+    margin: 26px;
 }
 
 .recipe-infos-box {
@@ -239,9 +239,9 @@ button {
     border-radius: 3px;
     font-size: 16px;
     font-weight: 700;
-    height: 800px;
+    height: 400px;
     padding: 13px;
-    width: 300px;
+    width: 400px;
 }
 
 .recipe-infos > div {
@@ -253,23 +253,44 @@ button {
     margin-top: 26px;
 }
 
+
+.recipe-details {
+    display: flex;
+    justify-content: space-around;
+    margin: 50px;
+}
+
 .recipe-ingredients-box {
     background-color: #eee;
     border: 2px solid #111;
     border-radius: 3px;
-    height: 800px;
+    height: 400px;
     padding: 13px;
     width: 400px;
 }
+
+    .recipe-ingredients-box div {
+        font-size: 18px;
+        margin: 7px;
+    }
 
 .recipe-steps-box {
     background-color: #eee;
     border: 2px solid #111;
     border-radius: 3px;
-    height: 800px;
     padding: 13px;
     width: 500px;
 }
+
+    .recipe-steps-box div {
+        font-size: 18px;
+        margin: 7px;
+    }
+
+    .recipe-steps-box .enter-done div:first-child {
+        font-size: 22px;
+        font-weight: 700;
+    }
 
 .recipe-cmd-box {
     padding: 13px;
@@ -303,7 +324,11 @@ button {
             cursor: pointer;
         }
 
-
+.recipes-advices-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 
 .stars_1 {
     background: url("../images/1_stars.png") no-repeat center center;

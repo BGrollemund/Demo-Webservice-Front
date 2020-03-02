@@ -3,6 +3,7 @@ import Connector from "../connector/Connector";
 import {Redirect} from "react-router-dom";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 import RNUtils from "./RNUtils";
+import Recipe from "./Recipe";
 
 class RecipeDetails extends React.Component {
     state = {
@@ -12,6 +13,7 @@ class RecipeDetails extends React.Component {
         ingredientsLabel: [],
         medium: {},
         recipe: {},
+        recipes_advices: {},
         recipe_id: this.props.location.state.recipe_id,
         steps: [],
         stepsLabel: [],
@@ -23,7 +25,6 @@ class RecipeDetails extends React.Component {
         Connector.get( `/api/recipe-full-infos/${ this.state.recipe_id }`, { headers: { Authorization: "Bearer " + this.state.token } } )
             .then( res => {
                 this.setState( {
-                    goToList: false,
                     ingredients: res.data.ingredients,
                     ingredientsLabel: res.data.ingredientsLabel,
                     medium: res.data.medium,
@@ -32,6 +33,39 @@ class RecipeDetails extends React.Component {
                     stepsLabel: res.data.stepsLabel
                 } );
             } );
+
+        Connector.get( `/api/recipes-with-ingredients/${ this.state.recipe_id }`, { headers: { Authorization: "Bearer " + this.state.token } } )
+            .then( res => {
+                this.setState( {
+                    recipes_advices: res.data.recipes
+                } );
+            } );
+    };
+
+    onRecipesClick = ( event ) => {
+        if( event.target.parentElement.classList.contains('recipe') ) {
+            const new_recipe_id = event.target.parentElement.classList[1];
+
+            Connector.get( `/api/recipe-full-infos/${ new_recipe_id }`, { headers: { Authorization: "Bearer " + this.state.token } } )
+                .then( res => {
+                    this.setState( {
+                        ingredients: res.data.ingredients,
+                        ingredientsLabel: res.data.ingredientsLabel,
+                        medium: res.data.medium,
+                        recipe: res.data.recipe,
+                        recipe_id: new_recipe_id,
+                        steps: res.data.steps,
+                        stepsLabel: res.data.stepsLabel
+                    } );
+                } );
+
+            Connector.get( `/api/recipes-with-ingredients/${ new_recipe_id }`, { headers: { Authorization: "Bearer " + this.state.token } } )
+                .then( res => {
+                    this.setState( {
+                        recipes_advices: res.data.recipes
+                    } );
+                } );
+        }
     };
 
     onRecipeCmdClick = ( event ) => {
@@ -109,29 +143,55 @@ class RecipeDetails extends React.Component {
             }
         }
 
+        const recipes_advices = Object.keys(this.state.recipes_advices).map( key => (
+            <CSSTransition
+                key={key}
+                timeout={200}
+            >
+                <div className="recipe-box">
+                    <Recipe
+                        recipe= {this.state.recipes_advices[key]}
+                    />
+                </div>
+            </CSSTransition>
+        ));
+
         return (
             <div>
-                <h1>{this.state.recipe.title}</h1>
-                <div className="recipe-details">
+                <div className="recipe-main-box">
+                    <h1>{this.state.recipe.title}</h1>
                     <div className="recipe-infos-box">
                         <div className="recipe-infos">
                             <div>{ preparationDuration }</div>
                             <div>{ bakingDuration }</div>
                             <div className="additional-infos">{ this.state.recipe.additionalInfos }</div>
                             <div className={"stars_"+this.state.recipe.ratingStars}></div>
-                            <div>
-                                <img
-                                    src={process.env.PUBLIC_URL + '/images/recipes/'+this.state.medium.filename}
-                                    alt={"recipe : "+this.state.recipe.title} />
-                            </div>
                         </div>
                     </div>
-                    <div className="recipe-ingredients-box">
-                        <div className="recipe-ingredients">
-                            <h2>Ingredients</h2>
-                            <TransitionGroup>
-                                { ingredients }
-                            </TransitionGroup>
+                    <div className="recipe-img-box">
+                        <div className="recipe-img">
+                            <img
+                                src={process.env.PUBLIC_URL + '/images/recipes/'+this.state.medium.filename}
+                                alt={"recipe : "+this.state.recipe.title} />
+                        </div>
+                    </div>
+                </div>
+                <div className="recipe-details">
+                    <div>
+                        <div className="recipe-ingredients-box">
+                            <div className="recipe-ingredients">
+                                <h2>Ingredients</h2>
+                                <TransitionGroup>
+                                    { ingredients }
+                                </TransitionGroup>
+                            </div>
+                        </div>
+                        <div className="recipe-cmd-box">
+                            <div className="recipe-cmd" onClick={ this.onRecipeCmdClick }>
+                                <button className="back-to-list">Back to list</button>
+                                <button className="recipe-modify">Modify</button>
+                                <button className="recipe-delete">Delete</button>
+                            </div>
                         </div>
                     </div>
                     <div className="recipe-steps-box">
@@ -142,12 +202,10 @@ class RecipeDetails extends React.Component {
                             </TransitionGroup>
                         </div>
                     </div>
-                    <div className="recipe-cmd-box">
-                        <div className="recipe-cmd" onClick={ this.onRecipeCmdClick }>
-                            <button className="back-to-list">Back to list</button>
-                            <button className="recipe-modify">Modify</button>
-                            <button className="recipe-delete">Delete</button>
-                        </div>
+                    <div className="recipes-advices-box">
+                        <TransitionGroup  className="recipes-advices-list" onClick={ this.onRecipesClick }>
+                            { recipes_advices }
+                        </TransitionGroup>
                     </div>
                 </div>
             </div>
